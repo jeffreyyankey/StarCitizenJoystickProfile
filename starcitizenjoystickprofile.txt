@@ -1,0 +1,107 @@
+<script type="text/javascript">
+jQuery(function($) {
+    
+    var x55 = [];
+    
+        x55["js1_x"] = "Joystick X-axis";
+        x55["js1_y"] = "Joystick Y-axis";
+        x55["js1_z"] = "Joystick Z-axis";
+        
+        x55["js2_x"] = "Throttle Left";
+        x55["js2_y"] = "Throttle Right";
+        
+        x55["js3_z"] = "Floor Pedals";
+        
+        x55["js1_button1"] = "Joystick Trigger";
+        x55["js1_button2"] = "Joystick Button A";
+        x55["js1_button3"] = "JoystickButton B";
+        x55["js1_button4"] = "Joystick Button C";
+        x55["js1_button5"] = "Joystick Button D";
+        x55["js1_button6"] = "Joystick Button Pinky";
+        
+        x55["js1_button7"] = "Joystick H1 Up";
+        x55["js1_button8"] = "Joystick H1 Right";
+        x55["js1_button9"] = "Joystick H1 Down";
+        x55["js1_button10"] = "Joystick H1 Left";
+        
+        x55["js1_button11"] = "Joystick H2 Up";
+        x55["js1_button12"] = "Joystick H2 Right";
+        x55["js1_button13"] = "Joystick H2 Down";
+        x55["js1_button14"] = "Joystick H2 Left";
+        
+        x55["js1_hat1_up"] = "Joystick POV Up";
+        x55["js1_hat1_down"] = "Joystick POV Down";
+        x55["js1_hat1_left"] = "Joystick POV Left";
+        x55["js1_hat1_right"] = "Joystick POV Right";
+        
+        x55["js2_button1"] = "Throttle Button E";
+        x55["js2_button2"] = "Throttle Button F";
+        x55["js2_button3"] = "Throttle Button G";
+        
+        x55["js2_button6"] = "Throttle SW 1";
+        x55["js2_button7"] = "Throttle SW 2";
+        x55["js2_button8"] = "Throttle SW 3";
+        x55["js2_button9"] = "Throttle SW 4";
+        x55["js2_button10"] = "Throttle SW 5";
+        x55["js2_button11"] = "Throttle SW 6";
+        
+        x55["js2_button12"] = "Throttle TGL 1 Up";
+        x55["js2_button13"] = "Throttle TGL 1 Down";
+        x55["js2_button14"] = "Throttle TGL 2 Up";
+        x55["js2_button15"] = "Throttle TGL 2 Down";
+        x55["js2_button16"] = "Throttle TGL 3 Up";
+        x55["js2_button17"] = "Throttle TGL 3 Down";
+        x55["js2_button18"] = "Throttle TGL 4 Up";
+        x55["js2_button19"] = "Throttle TGL 4 Down";
+        
+        x55["js2_button20"] = "Throttle H3 Up";
+        x55["js2_button21"] = "Throttle H3 Right";
+        x55["js2_button22"] = "Throttle H3 Down";
+        x55["js2_button23"] = "Throttle H3 Left";
+        
+        x55["js2_button24"] = "Throttle H4 Up";
+        x55["js2_button25"] = "Throttle H4 Right";
+        x55["js2_button26"] = "Throttle H4 Down";
+        x55["js2_button27"] = "Throttle H4 Left";
+        
+        x55["js2_button28"] = "Throttle K1 Up";
+        x55["js2_button29"] = "Throttle K1 Down";
+        
+        x55["js2_button35"] = "Throttle SLD";
+        
+        x55["js2_rotx"] = "Throttle Knob G";
+        
+        
+        //alert(x55.js1_button6);
+    
+    //Build the XML when the Submit button is clicked
+    $("#submitButton").click(function (e) {
+
+        var xml = $(myTextArea).val(),
+        xmlDoc = $.parseXML( xml ),
+        $xml = $( xmlDoc );
+        
+        var str = '<table class ="table-1" style="width:94%"><thead><tr><th>X55 HOTAS Name</th><th>Input Name</th><th>Action Name</th></tr></thead><tbody>';
+        
+         $(xml).find("action").each(function()
+        {
+           str += '<tr>';
+           
+           $(this).find('rebind').each(function()
+            {
+                var myInput = $(this).attr("input");
+                //alert(myInput);
+                str += '<td>' + x55[myInput]  + '</td>';
+                str += '<td>' + myInput + '</td>';
+            });
+            
+            str += '<td>' + $(this).attr("name") + '</td>';
+            str += '</tr>';
+        });    
+        
+        str += '</tbody></table>';
+        
+        $( "#myTable" ).append(str);
+    });    
+});
+</script>
